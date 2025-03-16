@@ -1,5 +1,17 @@
 h2 {
-    font-size: 3rem;
-    /* font-family: "Poppins", sans-serif; */
+    font-size: 2.5rem;
+    font-family: "Poppins", sans-serif;
+    color: #101750;
 
+}
+*{
+    color: #101750;
+}
+#cart-title{
+    background-color: #f8f4fc;
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    
 }

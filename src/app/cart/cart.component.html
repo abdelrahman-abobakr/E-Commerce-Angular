@@ -1,9 +1,11 @@
-<div class="container mt-4">
-    <h2 class="mb-4">Shopping Cart</h2>
+<div id="cart-title" class="row">
+    <h2 class="col-3 offset-1 fw-bold">Shopping Cart</h2>
+</div>
+<div class="container mt-4 w-100">
 
     @if ((cartItems.products).length ?? 0 > 0) {
         <div class="row fw-bold text-uppercase border-bottom p-3 d-none d-md-flex">
-            <div class="col-md-2">Product</div>
+            <div class="col-md-1">Product</div>
             <div class="col-md-4"></div> 
             <div class="col-md-3">Quantity</div>
             <div class="col-md-2">Subtotal</div>
@@ -13,12 +15,14 @@
         @for (item of cartItems.products ?? []; track item.id) {
             <app-cart-item [product]="item" ></app-cart-item>
         }
-
-        <div class="d-flex justify-content-end my-5">
-            <h4 class="bg-success text-light p-4 rounded-2" style="width: fit-content;">
-                Total: {{ cartItems.total | currency:'EGP ' }}
-            </h4> 
+        
+        <div class="my-5 w-25 text-center py-3" style="background-color: #f8f4fc;">
+            <p class="py-3 rounded-2 fw-bold border-bottom mx-auto" style="width: fit-content;">
+                Total: &nbsp; &nbsp; {{ cartItems.total | currency:'EGP ' }}
+            </p>
+            <button class="btn btn-success text-white">Proceed To Checkout</button>
         </div>
+        
         
     } @else {
         <p class="text-center text-muted">Your cart is empty.</p>
