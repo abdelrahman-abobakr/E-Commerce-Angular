@@ -1,0 +1,36 @@
+<!-- Sidebar Toggle Button -->
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar"
+  aria-controls="adminSidebar">
+  <i class="fa-solid fa-users-between-lines"></i>
+</button> -->
+<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar">
+  <i class="fas fa-bars"></i> Menu
+</button>
+
+<!-- Admin Sidebar -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel">
+  <div class="offcanvas-header text-white">
+    <h5 class="offcanvas-title" id="adminSidebarLabel">Admin Panel</h5>
+  </div>
+
+  <div class="offcanvas-body">
+    <ul class="list-group">
+      <!-- <li class="list-group-item">
+          <a href="/admin/dashboard" class="text-decoration-none">📊 Dashboard</a>
+        </li> -->
+      <li class="list-group-item">
+        <a href="/admin/orders" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none">📦 Orders</a>
+      </li>
+      <li class="list-group-item">
+        <a routerLink="products" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none">🛒
+          Products</a>
+      </li>
+      <li class="list-group-item">
+        <a routerLink="users" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none">👥 Users</a>
+      </li>
+      <!-- <li class="list-group-item">
+          <a href="/admin/settings" class="text-decoration-none">⚙️ Settings</a>
+        </li> -->
+    </ul>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CartItemsService } from '../services/cart-items.service';
+import { CartItemsService } from '../../services/cart-items.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { CurrencyPipe } from '@angular/common';
 @Component({
@@ -14,6 +14,6 @@ export class CartComponent {
   cartItems:any;
 
   ngOnInit(){
-    this.cartService.getCartItems().subscribe((res)=>{this.cartItems = res; console.log(res)});
+    this.cartService.getCartItems().subscribe((res)=>{ this.cartItems = res} );
   }
 }
