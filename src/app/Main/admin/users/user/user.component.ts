@@ -27,8 +27,8 @@ export class UserComponent {
   user = signal<User>(DEFAULT_USER);
   error = signal<string | null>(null);
   @Input() id: string = '';
+  
   ngOnInit() {
-
     // getting user data
     this.route.paramMap.subscribe(params => {
       const userId = params.get('id'); // Get the `id` parameter
@@ -38,7 +38,6 @@ export class UserComponent {
         this.error.set('User ID not found in the URL.');
       }
     });
-
     // getting orders of user
     this.ordersService.getUserOrders(this.id).subscribe((res)=>{console.log(res.orders); this.userOrders.set(res.orders); console.log(this.userOrders)})
   }
