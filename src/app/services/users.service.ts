@@ -24,4 +24,11 @@ export class UsersService {
       { headers: { 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2M5ZjlhZWNjZjk5MjdlYjYyMjBjYzgiLCJuYW1lIjoiYWJkZWxyYWhtYW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDEzNzMyNzJ9.NgETk6aEi3HKQu74ZV7YvovAjN9Y4EUPnAqFkz4N4mY' } }
     );
   }
+
+  signIn(credentials: { email: string; password: string }): Observable<any> {
+    return this.http.post("http://localhost:3000/signin", credentials);
+  }
+  signUp(credentials: { name: string; email: string; password: string }): Observable<any> { 
+    return this.http.post("http://localhost:3000/signup", credentials);
+  }
 }
