@@ -3,17 +3,21 @@ import { UsersService } from '../../../../services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../../interfaces/user';
 import { OrdersService } from '../../../../services/orders.service';
+import { DatePipe } from '@angular/common';
+
 const DEFAULT_USER: User = {
-  _id: 'hi',
+  _id: '',
   name: '',
   email: '',
   role: '',
   isVerified:true,
   password:''
 }
+
+
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -26,7 +30,6 @@ export class UserComponent {
   userOrders = signal<any[]>([])
   user = signal<User>(DEFAULT_USER);
   error = signal<string | null>(null);
-  @Input() id: string = '';
   
   ngOnInit() {
     // getting user data
@@ -38,7 +41,15 @@ export class UserComponent {
         this.error.set('User ID not found in the URL.');
       }
     });
-    // getting orders of user
-    this.ordersService.getUserOrders(this.id).subscribe((res)=>{console.log(res.orders); this.userOrders.set(res.orders); console.log(this.userOrders)})
+    
+    this.route.paramMap.subscribe(params => {
+      const userId = params.get('id'); // Get the `id` parameter
+      if (userId) {
+        this.ordersService.getUserOrders(userId).subscribe((res)=>{console.log(res.userOrders); this.userOrders.set(res.userOrders)},(err)=>this.error.set(err.error.message))
+      } else {
+        this.error.set('User ID not found in the URL.');
+      }
+    });
+
   }
 }

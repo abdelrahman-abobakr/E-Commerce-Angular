@@ -38,15 +38,24 @@ export class AllUsersComponent {
   }
 
   deleteUser(userId: string) {
-    this.usersService.deleteUser(userId).subscribe(
-      (res) => {
-        this.allUsers.set(this.allUsers().filter(user => user._id !== userId));
-        Swal.fire('Deleted!', 'The user has been deleted.', 'success');
-      },
-      (err) => {
-        Swal.fire('Error!', 'Failed to delete the user.', 'error');
-      }
-    );
+    let admins = this.allUsers().filter((user)=> user.role == 'admin');
+    if (admins.length == 1){
+      Swal.fire({
+        title:'Warning!',
+        text:"deleting last admin is not allowed",
+        timer:2000,
+      })
+    }else{
+      this.usersService.deleteUser(userId).subscribe(
+        (res) => {
+          this.allUsers.set(this.allUsers().filter(user => user._id !== userId));
+          Swal.fire('Deleted!', 'The user has been deleted.', 'success');
+        },
+        (err) => {
+          Swal.fire('Error!', 'Failed to delete the user.', 'error');
+        }
+      );
+    }
   }
 
 }
