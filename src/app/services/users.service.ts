@@ -33,7 +33,9 @@ export class UsersService {
   signIn(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post("http://localhost:3000/signin", credentials);
   }
-  signUp(credentials: { name: string; email: string; password: string }): Observable<any> { 
-    return this.http.post("http://localhost:3000/signup", credentials);
+  
+  // ✅ API call to register a new user
+  signUp(credentials: { name: string; email: string; password: string }): Observable<any> {
+     return this.http.post("http://localhost:3000/signup", credentials);
   }
 }
