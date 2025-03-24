@@ -58,24 +58,3 @@ export class SignInComponent {
     console.log('Login Data:', this.signInForm.value);
   }
 }
-// onSubmit(signinForm: NgForm) {
-//   if (signinForm.invalid) {
-//     return; // Stop if form is invalid
-//   }
-
-//   const credentials = {
-//     email: signinForm.value.email,
-//     password: signinForm.value.password
-//   };
-
-//   this.userService.signIn(credentials).subscribe(
-//     (response) => {
-//       console.log('Login Successful:', response);
-//       alert('Login Successful!'); // You can navigate to another page here
-//     },
-//     (error) => {
-//       console.error('Login Failed:', error);
-//       this.errorMessage = 'Invalid email or password!';
-//     }
-//   );
-// }
