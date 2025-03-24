@@ -54,9 +54,9 @@ export class AddUserComponent {
         console.log(res);
         this.success = res.message;
 
-        setTimeout(() => {
-          this.router.navigate(['/admin/users']); // Redirect to Home
-        }, 3000);
+        // setTimeout(() => {
+        //   this.router.navigate(['/admin/users']); // Redirect to Home
+        // }, 3000);
       
       }, 
       (error)=>this.error = error.error.message
