@@ -39,8 +39,7 @@
                   <p class="customer-id mb-1">Customer ID: {{ order.customerId }}</p>
                   <p class="order-total mb-1">Total Bill: <span class="badge bg-success">${{ order.totalBill }}</span></p>
                   <p class="order-dates">
-                    <span class="created-at">Created At: {{ order.createdAt | date: 'medium' }}</span> |
-                    <span class="updated-at">Updated At: {{ order.updatedAt | date: 'medium' }}</span>
+                    <span class="created-at">Created At: {{ order.createdAt | date: 'medium' }}</span> 
                   </p>
                 </div>
                 <div class="order-items">

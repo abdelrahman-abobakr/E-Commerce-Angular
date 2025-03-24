@@ -14,11 +14,37 @@ export class AllUsersComponent {
   allUsers = signal<User[]>([]);
   error = signal<string | null>(null);
 
+  currentPage = 1; 
+  pageSize = 30; 
+  isLoading = signal<boolean>(false); 
+  totalPages = signal<number>(1);
+ 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(
-      (res) => { this.allUsers.set(res.allUsers); console.log(res.allUsers); },
-      (err) => { this.error.set(err.error.message); console.log(err.error.message) }
-    );
+    this.loadUsers();
+  }
+
+  loadUsers(){
+    if (this.isLoading()) 
+      return;
+
+    this.isLoading.set(true);
+
+    this.usersService.getUsers(this.currentPage, this.pageSize).subscribe((res)=>{
+      this.allUsers.update((users)=>[...users, ...res.users]);
+      this.totalPages.set(res.totalPages);
+      this.currentPage++;
+      this.isLoading.set(false)
+    },
+    (err) => {
+      this.error.set(err.error.message);
+      this.isLoading.set(false);
+    });
+  }
+
+  loadMore() {
+    if (this.currentPage <= this.totalPages()) {
+      this.loadUsers();
+    }
   }
 
   confirmDelete(userId: string) {
@@ -57,5 +83,6 @@ export class AllUsersComponent {
       );
     }
   }
+
 
 }
