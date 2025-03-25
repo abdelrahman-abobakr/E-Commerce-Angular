@@ -1,3 +1,4 @@
+import { AddUserComponent } from './users/add-user/add-user.component';
 import { Routes } from '@angular/router';
 import { AllUsersComponent } from './users/all-users/all-users.component';
 import { AllProductsComponent } from './products/all-products/all-products.component';
@@ -9,6 +10,7 @@ export const adminRoutes: Routes = [
     path: '',
     component: AdminComponent, // Wrap everything inside this
     children: [
+      { path:'users/add-user',component:AddUserComponent},
       { path: 'users/:id', component:UserComponent},
       { path: '', redirectTo: 'users', pathMatch: 'full' }, 
       { path: 'users', component: AllUsersComponent },

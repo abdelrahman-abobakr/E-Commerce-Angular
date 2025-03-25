@@ -6,6 +6,9 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { customerRoutes } from './Main/customer/customer.routes';
 import { CardComponent } from './Main/customer/card/card.component';
 import { ProductDetailsComponent } from './Main/customer/product-details/product-details.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+
 export const routes: Routes = [
     {
         path: 'cart',
@@ -19,6 +22,15 @@ export const routes: Routes = [
     {
         path: 'admin',
         children:adminRoutes 
+    },
+    {
+        path: 'sign-in',
+        component: SignInComponent, 
+    },
+    {
+        path: 'sign-up',
+        component: SignUpComponent,
+        title: 'SignUP'
     },
     {
         path: '**',

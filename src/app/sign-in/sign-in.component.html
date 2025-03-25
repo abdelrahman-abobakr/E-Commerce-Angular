@@ -1,0 +1,81 @@
+<div
+  class="container d-flex justify-content-center align-items-center vh-100 bg-light"
+>
+  <div
+    class="card shadow-lg p-5 rounded-3"
+    style="max-width: 500px; width: 90%"
+  >
+    <h2 class="text-center mb-1" style="color: #2c3e50; font-weight: 900">
+      Login
+    </h2>
+    <p class="text-center text-secondary mb-4">
+      Please login using your account details below.
+    </p>
+
+    <form [formGroup]="signInForm" (ngSubmit)="handelSignIn()">
+      <!-- Email Field -->
+      <div class="mb-4">
+        <input
+          type="email"
+          class="form-control form-control-lg px-4"
+          placeholder="Email Address"
+          formControlName="email"
+          required
+        />
+
+        @if (formControls['email'].touched && formControls['email'].invalid) {
+        <small class="text-danger mt-1 d-block">
+          @if (formControls['email'].hasError('required')) { Email is required.
+          } @if (formControls['email'].hasError('email')) { Invalid email
+          format. }
+        </small>
+        }
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-4">
+        <input
+          type="password"
+          class="form-control form-control-lg px-4"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+
+        @if (formControls['password'].touched &&
+        formControls['password'].invalid) {
+        <small class="text-danger mt-1 d-block">
+          @if (formControls['password'].hasError('required')) { Password is
+          required. } @if (formControls['password'].hasError('pattern')) {
+          Password must include uppercase, lowercase, number, and special
+          character. }
+        </small>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn w-100 py-2 text-white fw-bold mb-4"
+        style="background: #fb2e86"
+        [disabled]="signInForm.invalid"
+      >
+        Sign In
+      </button>
+
+      <!-- Display error message -->
+      @if (errorMessage) {
+      <div class="text-danger text-center mt-3 small fst-italic">
+        {{ errorMessage }}
+      </div>
+      }
+
+      <div class="d-flex text-secondary justify-content-center">
+        <p>Don't have an account?</p>
+        <a class="text-decoration-none text-secondary ms-1" href="/sign-up"
+          >Create account</a
+        >
+      </div>
+    </form>
+  </div>
+</div>
