@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../Main/customer/types/product';
+import { ProductResponse } from '../Main/customer/types/productResponce';
+
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +36,8 @@ export class ProductServiceService {
   }
 
 
-  searchProducts(query: string): Observable<Product[]> {
-    return this.http.get<Product[]>(
+  searchProducts(query: string): Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(
       `${this.apiUrl}/search?query=${query}`,
       { headers: this.getHeaders() }
     );
