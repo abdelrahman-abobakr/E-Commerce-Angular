@@ -18,23 +18,23 @@ import { Order } from '../../../../interfaces/order';
 import { ProductServiceService } from '../../../../services/product-service.service';
 import { DatePipe, DecimalPipe, SlicePipe } from '@angular/common';
 @Component({
-  imports:[DatePipe, DecimalPipe, SlicePipe],
+  imports: [DatePipe, DecimalPipe, SlicePipe],
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.css'],
 })
 export class OrderComponent {
   @Input() singleOorder!: Order;
-  productNames: {[key: string]: string} = {};
+  productNames: { [key: string]: string } = {};
 
   constructor() {}
-  private productsService = inject(ProductServiceService)
+  private productsService = inject(ProductServiceService);
   ngOnInit() {
     // Fetch product names for all items in the order
-    this.singleOorder.items.forEach(item => {
+    this.singleOorder.items.forEach((item) => {
       this.productsService.getProductById(item.itemID).subscribe(
-        (res) => {
-          console.log(res.data)
+        (res: any) => {
+          console.log(res.data);
           this.productNames[item.itemID] = res.data.name;
         },
         (err) => {
@@ -50,10 +50,9 @@ export class OrderComponent {
   }
 
   getSubtotal(): number {
-    return this.singleOorder.items.reduce((sum, item) => sum + item.itemTotalPrice, 0);
+    return this.singleOorder.items.reduce(
+      (sum, item) => sum + item.itemTotalPrice,
+      0
+    );
   }
-
-
-
-  
 }
