@@ -23,6 +23,9 @@ export class CartItemsService {
     })
   }
 
+  removeCartItem(id:string){
+    return this.http.delete()
+  }
   checkout(){
     return this.http.post('http://localhost:3000/checkout',{},
       {headers:{'token': this.apiToken}}
