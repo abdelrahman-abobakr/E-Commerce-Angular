@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { CustomerComponent } from './customer.component';
 import { CardComponent } from './card/card.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
 export const customerRoutes: Routes = [
   {
     path: '',
@@ -15,6 +15,11 @@ export const customerRoutes: Routes = [
         path: 'details/:id',
         component: ProductDetailsComponent,
         title: 'Product Details'
+      },
+      {
+        path:'user-profile',
+        component:UserProfileComponent ,
+
       }
 
     ]

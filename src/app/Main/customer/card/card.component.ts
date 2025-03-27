@@ -14,7 +14,7 @@ interface ProductResponse {
 
 @Component({
   selector: 'app-card',
-  imports: [CurrencyPipe, RouterLink, NgClass],
+  // imports: [CurrencyPipe, RouterLink, NgClass],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
