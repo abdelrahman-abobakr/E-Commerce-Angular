@@ -1,0 +1,69 @@
+<div class="container mt-4" *ngIf="product">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2>Product Details</h2>
+      <button class="btn btn-secondary" (click)="toggleEditMode()">
+        {{ isEditMode ? "Cancel" : "Edit" }}
+      </button>
+    </div>
+    <div class="card-body">
+      <form
+        *ngIf="isEditMode; else viewMode"
+        [formGroup]="productForm"
+        (ngSubmit)="updateProduct()"
+      >
+        <!-- Form fields for editing -->
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Price</label>
+          <input type="number" class="form-control" formControlName="price" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Stock</label>
+          <input type="number" class="form-control" formControlName="stock" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input type="text" class="form-control" formControlName="image" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            rows="3"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="productForm.invalid"
+        >
+          Save Changes
+        </button>
+      </form>
+
+      <ng-template #viewMode>
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              [src]="product.image"
+              class="img-fluid rounded"
+              alt="Product Image"
+            />
+          </div>
+          <div class="col-md-8">
+            <h3>{{ product.name }}</h3>
+            <p class="text-success h4">${{ product.price }}</p>
+            <p>Stock: {{ product.stock }}</p>
+            <p>{{ product.description }}</p>
+            <p>Created: {{ product.createdAt }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

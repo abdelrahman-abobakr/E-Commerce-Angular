@@ -45,9 +45,16 @@ export class SignInComponent {
         console.log('Login Successful', response);
         localStorage.setItem('token', response.token); // Store token for authentication
         // Redirect user to dashboard or another page
-        setTimeout(() => {
-          this.router.navigate(['/cart']); // ✅ Redirect to Sign-In page after success
-        }, 2000);
+        // Add role-based redirection
+        console.log('Role:', response.role);
+        if (response.role === 'admin') {
+          this.router.navigate(['/admin']); // Redirect to Admin Dashboard
+        } else {
+          this.router.navigate(['/cart']); // Or /cart if you prefer
+        }
+        // setTimeout(() => {
+        //   this.router.navigate(['/cart']); // ✅ Redirect to Sign-In page after success
+        // }, 2000);
       },
       error: (error) => {
         console.log('Login Failed', error);
