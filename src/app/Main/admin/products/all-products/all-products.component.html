@@ -1,1 +1,76 @@
-<p>all-products works!</p>
+<!-- <div class="container mt-4">
+  <h2 class="text-center">All Products</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+  @for (product of products; track product.id) {
+    <div class="card mb-4 shadow-sm">
+        <img
+          [src]="product.imageUrl"
+          class="card-img-top"
+          alt="Product Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text text-success">
+            <strong>${{ product.price }}</strong>
+          </p>
+          <button class="btn btn-primary">View Details</button>
+        </div>
+    </div>
+    } @empty {
+    <p class="text-muted">No products found.</p>
+    }
+  </div>
+  
+</div> -->
+
+<div class="container mt-4">
+  <h2 class="text-center">All Products</h2>
+  <div class="text-end mb-3">
+    <button class="btn btn-success" (click)="navigateToAddProduct()">
+      Add New Product
+    </button>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    @for (product of allProducts(); track product._id) {
+    <div class="card mb-4 shadow-sm">
+      <img [src]="product.image" class="card-img-top" alt="Product Image" />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text text-success">
+          <strong>${{ product.price }}</strong>
+        </p>
+        <p class="card-text">Stock: {{ product.stock }}</p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" (click)="viewDetails(product._id)">
+            View Details
+          </button>
+          <button class="btn btn-danger" (click)="confirmDelete(product._id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <p class="text-muted">No products found.</p>
+    }
+  </div>
+  @if (currentPage <= totalPages()) {
+  <div class="text-center mt-4">
+    <button
+      class="btn btn-outline-primary"
+      (click)="loadMore()"
+      [disabled]="isLoading()"
+    >
+      @if (isLoading()) {
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Loading... } @else { Load More }
+    </button>
+  </div>
+  }
+</div>
