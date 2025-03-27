@@ -2,10 +2,15 @@ import { Component, inject, signal } from '@angular/core';
 import { UsersService } from '../../../../services/users.service';
 import { User } from '../../../../interfaces/user';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule, NgClass } from '@angular/common';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-all-users',
-  imports: [RouterLink],
+  imports: [    CommonModule,
+    NgClass, // Add this import
+    RouterLink,
+    FormsModule],
   templateUrl: './all-users.component.html',
   styleUrl: './all-users.component.css'
 })
@@ -13,12 +18,14 @@ export class AllUsersComponent {
   usersService = inject(UsersService);
   allUsers = signal<User[]>([]);
   error = signal<string | null>(null);
-
   currentPage = 1; 
   pageSize = 30; 
   isLoading = signal<boolean>(false); 
   totalPages = signal<number>(1);
- 
+  searchTerm: string = '';
+  roleFilter: string = 'all';
+
+
   ngOnInit() {
     this.loadUsers();
   }
@@ -28,7 +35,7 @@ export class AllUsersComponent {
       return;
 
     this.isLoading.set(true);
-
+    this.usersService.getUsers().subscribe((res)=>{},(err)=>{})
     this.usersService.getUsers(this.currentPage, this.pageSize).subscribe((res)=>{
       this.allUsers.update((users)=>[...users, ...res.users]);
       this.totalPages.set(res.totalPages);
@@ -82,6 +89,24 @@ export class AllUsersComponent {
         }
       );
     }
+  }
+
+
+  getAdminCount(): number {
+    return this.allUsers().filter(user => user.role === 'admin').length;
+  }
+  
+  getUserCount(): number {
+    return this.allUsers().filter(user => user.role === 'user').length;
+  }
+  
+  filteredUsers() {
+    return this.allUsers().filter(user => {
+      const matchesSearch = user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+                           user.email.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesRole = this.roleFilter === 'all' || user.role === this.roleFilter;
+      return matchesSearch && matchesRole;
+    });
   }
 
 

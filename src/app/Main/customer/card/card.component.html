@@ -1,28 +1,31 @@
-<!-- 
-  <div class="card product-card">
-    <img [src]="productItem.images[0]" class="card-img-top product-image" alt="{{ productItem.name }}">
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ productItem.name }}</h5>
-    <p class="card-text price">
-      {{ productItem.price | currency : "EGP" : "symbol" : "1.2-2" }}
-    </p>
-    <div class="rating">
-      @for (star of [1, 2, 3, 4, 5]; track star) {
-        <span class="star" [ngClass]="{'filled': star <= productItem.rating}">&#9733;</span>
-      }
-    </div>
-    <p class="stock-status" [ngClass]="{'in-stock': productItem.availabilityStatus === 'In Stock', 'low-stock': productItem.availabilityStatus === 'Low Stock', 'out-of-stock': productItem.availabilityStatus === 'Out of Stock'}">
-      {{ productItem.availabilityStatus }}
-    </p>
-    <button class="btn btn-primary me-2" [routerLink]="['/all', productItem.id]">View Details</button>
-   
-   </div>
-</div> -->
 
-@for (product of Products ; track product._id) {
-  
-  <div class="card product-card" >{{product.name}}</div>
-  @for (review of product.reviews; track $index) {
-    <div  >{{review.rating}}</div>
-  }
-}
+<div class="container">
+  <div class="row justify-content-center">
+    @for (product of Products; track product._id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 p-2">
+          <div class="image-container">
+            <img class="card-img-top"  [src]="product.image" alt="{{ product.name }}">
+            
+          </div>
+        
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 >{{product.description}}</h6>
+            <h5 class="card-title">{{ product.price  | currency : "EGP" : "symbol" : "1.2-2"}}</h5>
+          </div>
+          <div class="card-footer text-center mt-auto">
+            <!-- <button class="btn text-white btn-block text-center" style="background-color: #8d13fd;" (click)="redirectToDetails(product._id)" >View Details</button> -->
+            <button 
+            class="btn text-white btn-block text-center" 
+            style="background-color: #8d13fd;" 
+            [routerLink]="['/customer/details', product._id]">
+            View Details
+          </button>
+            
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

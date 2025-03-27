@@ -1,0 +1,94 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Add New Product</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <div
+            *ngIf="
+              productForm.get('name')?.invalid &&
+              productForm.get('name')?.touched
+            "
+            class="text-danger"
+          >
+            Name is required and must be 3-30 characters long.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Price</label>
+          <input type="number" class="form-control" formControlName="price" />
+          <div
+            *ngIf="
+              productForm.get('price')?.invalid &&
+              productForm.get('price')?.touched
+            "
+            class="text-danger"
+          >
+            Price is required and must be a positive number.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Stock</label>
+          <input type="number" class="form-control" formControlName="stock" />
+          <div
+            *ngIf="
+              productForm.get('stock')?.invalid &&
+              productForm.get('stock')?.touched
+            "
+            class="text-danger"
+          >
+            Stock is required and must be a positive number.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input type="text" class="form-control" formControlName="image" />
+          <div
+            *ngIf="
+              productForm.get('image')?.invalid &&
+              productForm.get('image')?.touched
+            "
+            class="text-danger"
+          >
+            Image URL is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              productForm.get('description')?.invalid &&
+              productForm.get('description')?.touched
+            "
+            class="text-danger"
+          >
+            Description is required and must be at least 6 characters.
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="productForm.invalid"
+        >
+          Add Product
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary ms-2"
+          (click)="router.navigate(['/products'])"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

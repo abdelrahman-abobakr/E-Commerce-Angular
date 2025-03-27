@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes  } from '@angular/router';
 // import { AdminComponent } from './admin.component';
 import { CustomerComponent } from './customer.component';
 import { CardComponent } from './card/card.component';
