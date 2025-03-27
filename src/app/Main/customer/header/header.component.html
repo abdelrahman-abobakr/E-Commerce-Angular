@@ -1,20 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg text-white navbar-light">
+  
+    <a class="navbar-brand fs-2"  routerLink="/customer/"
+    routerLinkActive="active_link" 
+    [routerLinkActiveOptions]="{ exact: true }"><img src="/public/logo.png" width="70px" height="50px" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/"
+    <div class="container  fs-6 collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav justify-content-between  mr-auto">
+        <li class="nav-item  active">
+          <a class="nav-link text-white" routerLink="/customer"
            routerLinkActive="active_link" 
            [routerLinkActiveOptions]="{ exact: true }">Home <span class="sr-only">(current)</span></a>
         </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
+      
+        <li class="nav-item  ms-4">
+          <a class="nav-link text-white"  routerLink="/customer/user-profile"
+          routerLinkActive="active_link"  
+          [routerLinkActiveOptions]="{ exact: true }">profile</a>
+        </li> 
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
@@ -28,11 +33,36 @@
         </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link " routerLink="/settings"  routerLinkActive="active_link">Settings</a>
-        </li> -->
+       </li>  -->
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
+      <!-- <form class="form-inline my-2 my-lg-0 d-flex align-items-center">
+        <label for="searchInput" class="mr-2">Search:</label>
+        <input id="searchInput" class="form-control mr-2" type="search" placeholder="Enter keywords" aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form> -->
+  
+      <div class="nav-search d-flex bg-white text-outline-danger text-secondary rounded-3" style="width: 500px;">
+         
+          <input type="text" class="nav-search-input flex-grow-1 fs-5 border-0 px-2 "placeholder="search">
+          <button class="btn "style="background-color:#fb2e86;">
+              <i class="fas fa-search p-2 text-white"></i>
+          </button>
+      </div>
+    
+    
+      <a class="nav-link ms-1 me-1" routerLink="/sign-in"
+       routerLinkActive="active_link" 
+       [routerLinkActiveOptions]="{ exact: true }" *ngIf="!isLoggedIn">login<img src="/public/login-svgrepo-com.svg"  width="25px" height="25px" alt=""></a>
+       <a class="nav-link ms-1 me-1" routerLink="/sign-up"
+       routerLinkActive="active_link" 
+       [routerLinkActiveOptions]="{ exact: true }"*ngIf="!isLoggedIn">signup<img src="/public/user-alt-1-svgrepo-com.svg"  width="25px" height="25px" alt=""></a>
+ 
+       <a class="nav-link" routerLink="/sign-in"
+       routerLinkActive="active_link" 
+       [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLoggedIn" (click)="logout()">logout<img src="/public/logout-svgrepo-com.svg"   width="25px" height="25px" alt=""></a>
+ 
+       <a class="nav-link" routerLink="/cart"
+       routerLinkActive="active_link" 
+       [routerLinkActiveOptions]="{ exact: true }"><img src="/public/cart-svgrepo-com.svg"  width="30px" height="30px" alt=""></a>
+      </div>
   </nav>

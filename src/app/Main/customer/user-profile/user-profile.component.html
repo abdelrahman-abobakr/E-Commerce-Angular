@@ -1,0 +1,32 @@
+<section><div *ngIf="userDetails; else notLoggedIn">
+    <h2>Welcome, {{ userDetails.name }}</h2>
+    <p>Email: {{ userDetails.email }}</p>
+    <p>Role: {{ userDetails.role }}</p>
+  </div>
+  
+  <ng-template #notLoggedIn>
+    <p>User not logged in.</p>
+  </ng-template>
+</section>
+<section>
+  <h2>Your Orders</h2>
+
+<div *ngIf="errorMessage; else ordersList">
+  <p class="error">{{ errorMessage }}</p>
+</div>
+
+<ng-template #ordersList>
+  <div *ngIf="orders.length > 0; else noOrders">
+    <ul *ngFor="let order of orders">
+      <li >
+        <strong>Order #{{ order._id }}</strong> 
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+<ng-template #noOrders>
+  <p>No orders found.</p>
+</ng-template>
+
+</section>
