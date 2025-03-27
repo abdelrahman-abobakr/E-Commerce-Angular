@@ -3,7 +3,7 @@
 </div>
 <div class="container mt-4 w-100">
 
-    @if ((cartItems.products).length ?? 0 > 0) {
+    @if (cartItems.length > 0) {
         <div class="row fw-bold text-uppercase border-bottom p-3 d-none d-md-flex">
             <div class="col-md-1">Product</div>
             <div class="col-md-4"></div> 
@@ -12,20 +12,20 @@
             <div class="col-md-1"></div> 
         </div>
         
-        @for (item of cartItems.products ?? []; track item.id) {
+        @for (item of cartItems ?? []; track item._id) {
             <app-cart-item [product]="item" ></app-cart-item>
         }
         
         <div class="my-5 w-25 text-center py-3" style="background-color: #f8f4fc;">
             <p class="py-3 rounded-2 fw-bold border-bottom mx-auto" style="width: fit-content;">
-                Total: &nbsp; &nbsp; {{ cartItems.total | currency:'EGP ' }}
+                Total: &nbsp; &nbsp; {{ cartItems.totalBill | currency:'EGP ' }}
             </p>
-            <button class="btn btn-success text-white">Proceed To Checkout</button>
+            <button class="btn btn-success text-white" (click)="purchase()">Proceed To Checkout</button>
         </div>
         
         
     } @else {
-        <p class="text-center text-muted">Your cart is empty.</p>
+        <p class="text-center text-muted mt-5 display-6 alert alert-info">Your cart is empty.</p>
     }
 </div>
 

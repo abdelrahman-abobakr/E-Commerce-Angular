@@ -9,7 +9,17 @@ export class CartItemsService {
 
   constructor(private http: HttpClient) { }
 
+  apiToken = localStorage.getItem('token')||'';
+
   getCartItems():Observable<any>{
-    return this.http.get('https://dummyjson.com/carts/1');
+    return this.http.get('http://localhost:3000/cart',
+      {headers:{'token' : this.apiToken}}
+    );
+  }
+
+  checkout(){
+    return this.http.post('http://localhost:3000/checkout',{},
+      {headers:{'token': this.apiToken}}
+    );
   }
 }

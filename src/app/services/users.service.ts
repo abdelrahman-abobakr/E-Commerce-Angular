@@ -70,4 +70,8 @@ export class UsersService {
       role: string; // Add type for role
     }>('http://localhost:3000/signin', credentials);
   }
+
+  // signUp(credentials: { name: string; email: string; password: string }): Observable<any> {
+  //    return this.http.post("http://localhost:3000/signup", credentials);
+  // }
 }

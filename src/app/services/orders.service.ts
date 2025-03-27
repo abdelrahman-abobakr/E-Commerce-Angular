@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { OrderResponse } from '../interfaces/order';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,4 +15,10 @@ export class OrdersService {
          }
       );
     }
+    getAllOrders(): Observable<OrderResponse>{
+      return this.http.get<OrderResponse>('http://localhost:3000/orders',
+        { headers: { 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2M5ZjlhZWNjZjk5MjdlYjYyMjBjYzgiLCJuYW1lIjoiYWJkZWxyYWhtYW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDEzNzMyNzJ9.NgETk6aEi3HKQu74ZV7YvovAjN9Y4EUPnAqFkz4N4mY' },
+         }
+      );
+    };
 }

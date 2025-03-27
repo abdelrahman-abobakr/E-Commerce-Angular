@@ -14,6 +14,14 @@ export class CartComponent {
   cartItems:any;
 
   ngOnInit(){
-    this.cartService.getCartItems().subscribe((res)=>{ this.cartItems = res} );
+    this.cartService.getCartItems().subscribe(
+      (res)=>{console.log(res.userCart); this.cartItems = res.userCart? res.userCart.items : [] },
+       
+   );
+  }
+
+
+  purchase(){
+    this.cartService.checkout().subscribe((res:any)=>{console.log(res.url); window.location.href = `${res.url}`},(err)=>{console.log(err)})
   }
 }
