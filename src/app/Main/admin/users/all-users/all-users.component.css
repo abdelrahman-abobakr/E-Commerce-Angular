@@ -1,4 +1,263 @@
-.spinner-border {
+/* .spinner-border {
     width: 3rem;
     height: 3rem;
+  } */
+
+/* Main Dashboard Styles */
+.users-dashboard {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  background-color: #f8fbfe;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Stats Card */
+.stats-card {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.08);
+  flex: 1;
+  max-width: 250px;
+  border-top: 4px solid #0077b6;
+}
+
+.stat-label {
+  display: block;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Filter Section */
+.users-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  width: 300px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0077b6;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+}
+
+.filter-options {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filter-select {
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background-color: white;
+  color: #495057;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-add-user {
+  padding: 0.75rem 1.5rem;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-add-user:hover {
+  background-color: #0069a3;
+}
+
+/* Error Message */
+.alert-error {
+  padding: 1rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Users Table */
+.users-table-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.08);
+  overflow: hidden;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background-color: #f1f9ff;
+  border-bottom: 1px solid #e1f0ff;
+}
+
+.users-table th {
+  padding: 1rem;
+  text-align: left;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.users-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+}
+
+.users-table tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tr:hover {
+  background-color: #f8fbfe;
+}
+
+/* Role Badges */
+.role-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.role-admin {
+  background-color: #e9f7fe;
+  color: #0077b6;
+}
+
+.role-user {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+/* Action Buttons */
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 0.85rem;
+}
+
+.action-btn.view {
+  background-color: #e9f7fe;
+  color: #0077b6;
+}
+
+.action-btn.delete {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.action-btn.view:hover {
+  background-color: #d0ebfa;
+}
+
+.action-btn.delete:hover {
+  background-color: #f5c6cb;
+}
+
+/* Empty Message */
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+}
+
+/* Load More Section */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.load-more-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.load-more-btn:hover {
+  background-color: #0069a3;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 0.25rem solid rgba(0, 119, 182, 0.2);
+  border-top: 0.25rem solid #0077b6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.no-more-text {
+  color: #6c757d;
+  font-style: italic;
+}
