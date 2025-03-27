@@ -17,6 +17,12 @@ export class CartItemsService {
     );
   }
 
+  updateCartItem(id:string, quantity: number){
+    return this.http.put(`http://localhost:3000/cart/update/${id}`,{quantity},{
+      headers:{'token':this.apiToken}
+    })
+  }
+
   checkout(){
     return this.http.post('http://localhost:3000/checkout',{},
       {headers:{'token': this.apiToken}}

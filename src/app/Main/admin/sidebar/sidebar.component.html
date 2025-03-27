@@ -11,9 +11,6 @@
 
   <div class="offcanvas-body">
     <ul class="list-group">
-      <!-- <li class="list-group-item">
-          <a href="/admin/dashboard" class="text-decoration-none">📊 Dashboard</a>
-        </li> -->
       <li class="list-group-item">
         <a href="/admin/orders" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none">📦 Orders</a>
       </li>
@@ -22,11 +19,12 @@
           Products</a>
       </li>
       <li class="list-group-item">
-        <a routerLink="users" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none">👥 Users</a>
+        <a routerLink="users" routerLinkActive="fw-bold bg-info-subtle rounded-2 px-4" class="text-decoration-none">👥 Users</a>
       </li>
-      <!-- <div class="bg-primary">
-        <img src="../../../assets/personal.jpg" alt="" style="width: 100px; height:100px;">
-      </div> -->
+      <li class="list-group-item">
+        <a (click)="logout()" routerLinkActive="fw-bold bg-info rounded-2" class="text-decoration-none"> <button class="btn btn-danger">Log out</button></a>
+      </li>
+      
     </ul>
   </div>
 </div>
