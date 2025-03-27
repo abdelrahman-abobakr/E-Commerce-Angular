@@ -33,7 +33,7 @@ export class OrderComponent {
     // Fetch product names for all items in the order
     this.singleOorder.items.forEach(item => {
       this.productsService.getProductById(item.itemID).subscribe(
-        (res) => {
+        (res:any) => {
           console.log(res.data)
           this.productNames[item.itemID] = res.data.name;
         },
