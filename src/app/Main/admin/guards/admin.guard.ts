@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
   canActivate(): boolean {
     const token = localStorage.getItem('token');
     if (!token) {
-      this.router.navigate(['/sign-in']);
+      this.router.navigate(['/customer/products']);
       return false;
     }
 
