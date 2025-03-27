@@ -50,7 +50,7 @@ export class SignInComponent {
         if (response.role === 'admin') {
           this.router.navigate(['/admin']); // Redirect to Admin Dashboard
         } else {
-          this.router.navigate(['/cart']); // Or /cart if you prefer
+          this.router.navigate(['/customer']); // Or /cart if you prefer
         }
         // setTimeout(() => {
         //   this.router.navigate(['/cart']); // ✅ Redirect to Sign-In page after success

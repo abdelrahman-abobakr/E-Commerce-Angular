@@ -52,17 +52,17 @@
     
       <a class="nav-link ms-1 me-1" routerLink="/sign-in"
        routerLinkActive="active_link" 
-       [routerLinkActiveOptions]="{ exact: true }" *ngIf="!isLoggedIn">login<img src="/public/login-svgrepo-com.svg"  width="25px" height="25px" alt=""></a>
+       [routerLinkActiveOptions]="{ exact: true }" *ngIf="!isLoggedIn">Log In<i class="fa-solid fa-arrow-right-to-bracket ms-2 text-white"></i></a>
        <a class="nav-link ms-1 me-1" routerLink="/sign-up"
        routerLinkActive="active_link" 
-       [routerLinkActiveOptions]="{ exact: true }"*ngIf="!isLoggedIn">signup<img src="/public/user-alt-1-svgrepo-com.svg"  width="25px" height="25px" alt=""></a>
+       [routerLinkActiveOptions]="{ exact: true }"*ngIf="!isLoggedIn">Sign Up<i class="fa-solid fa-user-plus ms-2 text-white"></i></a>
  
        <a class="nav-link" routerLink="/sign-in"
        routerLinkActive="active_link" 
-       [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLoggedIn" (click)="logout()">logout<img src="/public/logout-svgrepo-com.svg"   width="25px" height="25px" alt=""></a>
+       [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLoggedIn" (click)="logout()">logout<i class="fa-solid fa-arrow-right-from-bracket ms-2 text-white"></i></a>
  
        <a class="nav-link" routerLink="/cart"
        routerLinkActive="active_link" 
-       [routerLinkActiveOptions]="{ exact: true }"><img src="/public/cart-svgrepo-com.svg"  width="30px" height="30px" alt=""></a>
+       [routerLinkActiveOptions]="{ exact: true }"><i class="fa-solid fa-cart-shopping text-white ms-2"></i></a>
       </div>
   </nav>
