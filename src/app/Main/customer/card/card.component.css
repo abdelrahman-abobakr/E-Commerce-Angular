@@ -1,0 +1,90 @@
+/* Basic styling for the card */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slightly deeper shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;  /* Ensure content doesn't overflow the card */
+  background-color: #ffffff;
+}
+
+/* Hover effect for the card */
+.card:hover {
+  transform: translateY(-8px);  /* Slightly more prominent hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);  /* More intense shadow */
+}
+
+/* Styling for the image container to keep it clean */
+.image-container {
+  position: relative;
+  overflow: hidden;  /* Ensure the image doesn't go outside the container */
+  border-radius: 8px 8px 0 0; /* Rounded corners on top */
+}
+
+/* Styling for the image */
+.image-container img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on image */
+.image-container:hover img {
+  transform: scale(1.1);  /* Zoom effect on hover */
+}
+
+
+
+/* Card Body Styling */
+.card-body {
+  padding: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Product Name and Price Styling */
+.card-body .card-title {
+  margin-bottom: 15px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.card-body .card-title.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Add to Cart Button Styling */
+.card-footer {
+  padding: 15px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.card-footer .btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effect on "Add to Cart" button */
+.card-footer .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Ensure the "Add to Cart" button doesn't overflow */
+.card-footer .btn {
+  max-width: 100%;
+  text-align: center;
+}
+
