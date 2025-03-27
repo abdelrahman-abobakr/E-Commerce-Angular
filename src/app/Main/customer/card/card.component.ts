@@ -1,71 +1,80 @@
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ProductServiceService } from './../../../services/product-service.service';
-import { Component } from '@angular/core';
 import { CurrencyPipe, NgClass } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../types/product';
 
-interface ProductResponse {
-  message: string;
-  data: Product[];  
-  totalProducts: number;
-  currentPage: number;
-  totalPages: number;
-}
+// interface ProductResponse {
+//   message: string;
+//   data: Product[];
+//   totalProducts: number;
+//   currentPage: number;
+//   totalPages: number;
+// }
+
 
 @Component({
   selector: 'app-card',
-  imports: [CurrencyPipe, RouterLink, NgClass],
+  standalone: true,
+  imports: [CurrencyPipe, RouterLink, NgClass, FormsModule,RouterLink],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  Products: Product[] = []; // List of products
-  selectedProduct: Product | null = null; // For viewing or editing a single product
+  Products: Product[] = [];
+  selectedProduct: Product | null = null;
   loading: boolean = false;
+  searchQuery: string = '';
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   constructor(private productService: ProductServiceService) {}
-
+router=inject(Router);
   ngOnInit(): void {
     this.getAllProducts(); 
   }
 
-  // Fetch all products with pagination
-  getAllProducts(page: number = 1, limit: number = 5): void {
+ 
+  getAllProducts(page: number = this.currentPage, limit: number =16): void {
     this.loading = true;
     this.productService.getAllProducts(page, limit).subscribe(
-      (res: { res: Product[]; total: number }) => {
+      (res:any) => {
         console.log('Products fetched:', res);
-        this.Products = res.res;  // Access 'res' instead of 'data'
+         this.Products = res.data;
+         this.totalPages = res.totalPages; 
+         this.currentPage = res.currentPage; 
         this.loading = false;
       },
       (error) => {
-        if (error.status === 401) {
-          console.error('Unauthorized: Please log in again.');
-        }
+        console.error('Error fetching products:', error);
         this.loading = false;
       }
     );
   }
 
-  // Update a product by ID
+ 
   updateProduct(id: string, updatedProduct: Product): void {
+    this.loading = true;
     this.productService.updateProduct(id, updatedProduct).subscribe(
       (res) => {
         console.log(`Product with ID ${id} updated successfully:`, res);
-        this.getAllProducts(); // Refresh the product list
+        this.getAllProducts(this.currentPage); 
+        this.loading = false;
       },
       (error) => {
         console.log(`Error updating product with ID ${id}:`, error);
+        this.loading = false;
       }
     );
   }
 
-  // Fetch a product by ID
+
   getProductById(id: string): void {
     this.productService.getProductById(id).subscribe(
-      (res: Product) => {  // Expecting a single Product, not an array
+      (res) => {
         console.log('Product fetched by ID:', res);
-        this.selectedProduct = res; 
+        this.selectedProduct = res;
       },
       (error) => {
         console.log(`Error fetching product with ID ${id}:`, error);
@@ -73,12 +82,12 @@ export class CardComponent {
     );
   }
 
-  // Delete a product by ID
+
   deleteProduct(id: string): void {
     this.productService.deleteProduct(id).subscribe(
       () => {
         console.log(`Product with ID ${id} deleted successfully.`);
-        this.getAllProducts(); // Refresh the product list after deletion
+        this.getAllProducts(this.currentPage); // Refresh the product list after deletion
       },
       (error) => {
         console.log(`Error deleting product with ID ${id}:`, error);
@@ -86,19 +95,37 @@ export class CardComponent {
     );
   }
 
-  // Search products by query (name or price)
+
   searchProducts(query: string): void {
-    this.loading = true;
-    this.productService.searchProducts(query).subscribe(
-      (res: ProductResponse) => {  // Expecting ProductResponse now
-        console.log('Search results:', res);
-        this.Products = res.data;  // Store the search results in Products array
-        this.loading = false;
-      },
-      (error) => {
-        console.log('Error searching for products:', error);
-        this.loading = false;
-      }
-    );
+    if (query.trim()) {
+      this.loading = true;
+      this.productService.searchProducts(query).subscribe(
+        (res) => {
+          console.log('Search results:', res);
+          this.Products = res.data || []; 
+          this.loading = false;
+        },
+        (error) => {
+          console.log('Error searching for products:', error);
+          this.loading = false;
+        }
+      );
+    } else {
+      this.getAllProducts(); 
+    }
   }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.getAllProducts(page); 
+    } else {
+      console.error('Invalid page number:', page);
+    }
+  }
+
+
+  // redirectToDetails(productId: string){
+    
+  //   this.router.navigate([`/details/${productId}`]);
+  // }
 }

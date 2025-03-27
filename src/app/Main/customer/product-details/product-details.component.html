@@ -1,30 +1,30 @@
-@if (product) {
+<!-- @if(product){
     <div class="container text-center">
       <h1 class="text-center mb-5 title">Products Details </h1>
     <div class="card product-details-card">
       <div class="product-image-container">
-        <img [src]="product.images[0]" alt="{{ product.title }}" class="product-image">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image">
       </div>
       <div class="product-info">
-        <h2 class="product-title">{{ product.title }}</h2>
-        <p class="product-category">{{ product.category }}</p>
-        <p class="product-description">{{ product.description }}</p>
-        <p class="product-brand">{{ product.brand}}</p>
-        <div class="rating">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <p>{{product.description}}</p>
+           <div class="rating">
           @for (star of [1, 2, 3, 4, 5]; track star) {
-            <span class="star" [ngClass]="{'filled': star <= product.rating}">&#9733;</span>
+            <span class="star" [ngClass]="{'filled': star <= product.reviews.rating}">&#9733;</span>
           }
-        </div>
-        <p class="stock-status" [ngClass]="{'in-stock': product.availabilityStatus === 'In Stock', 'low-stock': product.availabilityStatus === 'Low Stock', 'out-of-stock': product.availabilityStatus === 'Out of Stock'}">
-          {{ product.availabilityStatus }}
-        </p>
+        </div> 
+       
         <p class="product-price">{{ product.price | currency:'EGP' }}</p>
-        <p class="monthly-payment">or {{ (product.price / 6) | currency:'EGP' }}/month</p>
+        
         <button class="btn-outline-success btn me-3 ">Buy Now</button>
-        <button class="btn btn-success"  [disabled]="product.availabilityStatus === 'Low Stock'" >Add to Cart</button> 
+        <button class="btn btn-success" >Add to Cart</button> 
 
       </div>
     </div></div>
-  } @else {
-    <p class="not-found-message">Product not found!</p>
-}
+
+  }@else{
+    <div class="container text-center">
+      <h1 class="text-center mb-5 title">No Product Found</h1>
+    </div>
+  }
+ -->
