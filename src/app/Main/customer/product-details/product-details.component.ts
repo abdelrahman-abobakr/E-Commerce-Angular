@@ -24,7 +24,7 @@ constructor(
 ) {}
 
 ngOnInit() {
-  const productId = this.route.snapshot.params['_id'];
+  const productId = this.route.snapshot.params['id'];
   console.log(productId);
       this.productService.getProductById(productId).subscribe(
         (res) => {
